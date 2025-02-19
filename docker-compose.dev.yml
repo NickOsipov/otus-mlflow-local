@@ -1,0 +1,62 @@
+version: '3.1'
+
+services:
+  postgres:
+    container_name: mlflow_postgres
+    image: postgres:latest
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_USER=mlflow
+      - POSTGRES_PASSWORD=mlflow
+      - POSTGRES_DB=mlflow
+      - PGDATA=/var/lib/postgresql/data/mlflow
+    volumes:
+      - mlflow_postgres:/var/lib/postgresql/data
+    networks:
+      - test
+
+  s3:
+    container_name: mlflow_s3
+    image: minio/minio:latest
+    ports:
+      - "19001:9000"
+      - "19002:9001"
+    environment:
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+    command: server --console-address :9001 /data
+    volumes:
+      - ./s3:/data
+    networks:
+      - test
+
+  mlflow:
+    build: ./mlflow
+    image: mlflow_server
+    container_name: mlflow_server
+    depends_on:
+      - postgres
+      - s3
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_S3_ENDPOINT_URL=http://s3:9000
+      - AWS_ACCESS_KEY_ID=minioadmin
+      - AWS_SECRET_ACCESS_KEY=minioadmin
+    networks:
+      - test
+    # command: mlflow server --backend-store-uri postgresql://mlflow:mlflow@postgres:5432 --default-artifact-root s3://mlflow --host 0.0.0.0 --port 5000
+    command: [
+      "mlflow", "server", 
+      "--backend-store-uri", "postgresql://mlflow:mlflow@postgres:5432/mlflow", 
+      "--default-artifact-root", "s3://mlflow", 
+      "--host", "0.0.0.0", 
+      "--port", "5000"
+    ]
+networks:
+  test:
+    driver: bridge
+
+volumes:
+  mlflow_postgres:
