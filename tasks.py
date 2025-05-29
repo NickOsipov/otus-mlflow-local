@@ -19,3 +19,10 @@ def up(ctx):
 def reqs(ctx):
     """Обновить зависимости"""
     ctx.run("uv add --requirements requirements.txt")
+
+@task
+def setup(ctx):
+    """
+    Установить зависимости и запустить сервисы
+    """
+    ctx.run("uv sync")
