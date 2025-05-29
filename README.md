@@ -1,4 +1,4 @@
-# MLflow Server
+# OTUS. MLflow Local
 
 Готовое решение для развертывания MLflow сервера с использованием Docker. Включает в себя MinIO в качестве S3-совместимого хранилища для артефактов и MySQL для хранения метаданных.
 
@@ -21,8 +21,8 @@
 1. Клонируйте репозиторий:
 
 ```bash
-git clone https://github.com/your-username/mlflow-server.git
-cd mlflow-server
+git clone https://github.com/NickOsipov/otus-mlflow-local.git
+cd otus-mlflow-local
 ```
 
 2. Создайте файл .env со следующими переменными:
@@ -70,3 +70,5 @@ MIT License
 ## Автор
 
 [Nick Osipov](https://t.me/NickOsipov)
+
+https://blog.min.io/back-up-restic-minio/
