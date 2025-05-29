@@ -26,7 +26,7 @@ def load_model_from_registry():
         # Создание клиента
         logger.info("Creating MLflow client")
         client = MlflowClient()
-        model_name = "tracking-quickstart"
+        model_name = "script-tracking-quickstart"
         model_alias = "prod"
         
         # Загрузка модели

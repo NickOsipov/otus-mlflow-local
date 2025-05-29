@@ -46,7 +46,6 @@ def main():
     params = {
         "solver": "lbfgs",
         "max_iter": 1000,
-        # "multi_class": "auto",
         "random_state": 8888,
     }
     logger.info(f"Model hyperparameters: {params}")
@@ -71,7 +70,7 @@ def main():
 
     # Create a new MLflow Experiment
     logger.info("Setting up MLflow experiment")
-    mlflow.set_experiment("MLflow Quickstart Script")
+    mlflow.set_experiment("MLflow Quickstart Script New")
 
     # Start an MLflow run
     logger.info("Starting MLflow run")
@@ -91,7 +90,7 @@ def main():
 
             # Set a tag that we can use to remind ourselves what this run was for
             logger.debug("Setting MLflow tags")
-            mlflow.set_tag("Training Info", "Basic LR model for iris data")
+            mlflow.set_tag("LR Info", "LR model from script")
 
             # Infer the model signature
             logger.info("Inferring model signature")
@@ -104,7 +103,7 @@ def main():
                 artifact_path="iris_model",
                 signature=signature,
                 input_example=X_train,
-                registered_model_name="tracking-quickstart",
+                registered_model_name="script-tracking-quickstart",
             )
             # dataset: PandasDataset = mlflow.data.from_pandas(X_train)
             # mlflow.log_input(dataset, context="training")
