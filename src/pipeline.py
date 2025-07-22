@@ -44,8 +44,8 @@ def main():
     # Define the model hyperparameters
     params = {
         "solver": "lbfgs",
-        "max_iter": 1000,
-        "random_state": 8888,
+        "max_iter": 100,
+        "random_state": 42,
     }
     logger.info(f"Model hyperparameters: {params}")
 
