@@ -69,7 +69,7 @@ def main():
 
     # Create a new MLflow Experiment
     logger.info("Setting up MLflow experiment")
-    mlflow.set_experiment("MLflow Quickstart From Script")
+    mlflow.set_experiment("Quickstart From Script")
 
     # Start an MLflow run
     logger.info("Starting MLflow run")
