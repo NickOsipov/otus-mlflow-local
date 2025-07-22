@@ -6,13 +6,12 @@ import os
 
 import mlflow
 from mlflow.models import infer_signature
-from mlflow.data.pandas_dataset import PandasDataset
 
 import pandas as pd
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score
 
 from dotenv import load_dotenv
 from loguru import logger
@@ -70,7 +69,7 @@ def main():
 
     # Create a new MLflow Experiment
     logger.info("Setting up MLflow experiment")
-    mlflow.set_experiment("MLflow Quickstart Script New")
+    mlflow.set_experiment("MLflow Quickstart From Script")
 
     # Start an MLflow run
     logger.info("Starting MLflow run")
@@ -105,8 +104,6 @@ def main():
                 input_example=X_train,
                 registered_model_name="script-tracking-quickstart",
             )
-            # dataset: PandasDataset = mlflow.data.from_pandas(X_train)
-            # mlflow.log_input(dataset, context="training")
 
             logger.success("MLflow run completed successfully")
             logger.info(f"Model info: {model_info}")
