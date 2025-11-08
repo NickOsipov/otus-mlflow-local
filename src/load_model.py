@@ -57,13 +57,13 @@ def main():
     """
     parser = ArgumentParser(description="Load model from MLflow model registry")
     parser.add_argument(
-        "--model_name",
+        "--model-name",
         type=str,
         default="script-tracking-quickstart",
         help="Name of the model in MLflow model registry",
     )
     parser.add_argument(
-        "--model_alias",
+        "--model-alias",
         type=str,
         default="prod",
         help="Alias of the model version in MLflow model registry",
