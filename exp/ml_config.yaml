@@ -1,0 +1,4 @@
+model_params:
+  solver: lbfgs
+  max_iter: 100
+  random_state: 2
