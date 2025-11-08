@@ -3,6 +3,7 @@ Demo script for MLflow tracking
 """
 
 import os
+from argparse import ArgumentParser
 
 import mlflow
 from mlflow.models import infer_signature
@@ -15,6 +16,7 @@ from sklearn.metrics import accuracy_score
 
 from dotenv import load_dotenv
 from loguru import logger
+import yaml
 
 load_dotenv()
 
@@ -25,6 +27,15 @@ def main():
     """
     Main function to train a model and log it to MLflow    
     """
+
+    parser = ArgumentParser()
+
+    parser.add_argument("--config", type=str, default="ml_config.yaml", help="Path to config file")
+    args = parser.parse_args()
+
+    with open(args.config, "r") as f:
+        config = yaml.safe_load(f)
+
     logger.info("Starting the MLflow demo script")
     
     # Load the Iris dataset
@@ -42,10 +53,11 @@ def main():
     logger.debug(f"Test set shape: X-{X_test.shape}, y-{y_test.shape}")
 
     # Define the model hyperparameters
+    model_params = config["model_params"]
     params = {
-        "solver": "lbfgs",
-        "max_iter": 100,
-        "random_state": 42,
+        "solver": model_params["solver"],
+        "max_iter": model_params["max_iter"],
+        "random_state": model_params["random_state"],
     }
     logger.info(f"Model hyperparameters: {params}")
 
