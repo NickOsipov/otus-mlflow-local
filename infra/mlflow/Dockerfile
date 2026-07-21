@@ -1,8 +1,8 @@
-FROM python:3.11.4-slim-buster
+FROM python:3.11.4-slim-bookworm
 
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
-RUN pip install --upgrade pip wheel setuptools
+RUN pip install --upgrade pip wheel
 RUN pip install --no-cache-dir -r requirements.txt
