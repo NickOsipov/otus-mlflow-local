@@ -12,7 +12,7 @@ up:
 re-up: down up
 
 run-pipe:
-	python3 src/pipeline.py
+	python3 src/pipeline.py --config exp/ml_config.yaml
 
 load-model:
-	python3 src/load_model.py --model-alias prod
+	python3 src/load_model.py --model-alias champion
