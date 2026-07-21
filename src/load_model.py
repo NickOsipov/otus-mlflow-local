@@ -74,7 +74,7 @@ def main():
         model = load_model_from_registry(
             model_name=args.model_name, model_alias=args.model_alias
         )
-        test_data = np.array([[5.1, 3.5, 1.4, 0.2]])
+        test_data = np.array([[50.1, 30.5, 10.4, 10.2]])
         logger.info("Making prediction with loaded model")
         prediction = model.predict(test_data)
         logger.info(f"Prediction result: {prediction}")
